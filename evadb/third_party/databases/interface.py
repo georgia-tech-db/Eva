@@ -52,6 +52,8 @@ def _get_database_handler(engine: str, **kwargs):
         return mod.HackernewsSearchHandler(engine, **kwargs)
     elif engine == "slack":
         return mod.SlackHandler(engine, **kwargs)
+    elif engine == "reddit":
+        return mod.RedditHandler(engine, **kwargs)
     else:
         raise NotImplementedError(f"Engine {engine} is not supported")
 

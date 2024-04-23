@@ -138,6 +138,10 @@ imagegen_libs = [
     "replicate"
 ]
 
+reddit_libs = [
+    "praw"
+]
+
 ### NEEDED FOR DEVELOPER TESTING ONLY
 
 dev_libs = [
@@ -183,8 +187,9 @@ EXTRA_REQUIRES = {
     "xgboost": xgboost_libs,
     "forecasting": forecasting_libs,
     "hackernews": hackernews_libs,
+    "reddit": reddit_libs,
     # everything except ray, qdrant, ludwig and postgres. The first three fail on pyhton 3.11.
-    "dev": dev_libs + vision_libs + document_libs + function_libs + notebook_libs + forecasting_libs + sklearn_libs + imagegen_libs + xgboost_libs
+    "dev": dev_libs + vision_libs + document_libs + function_libs + notebook_libs + forecasting_libs + sklearn_libs + imagegen_libs + xgboost_libs + reddit_libs
 }
 
 setup(
