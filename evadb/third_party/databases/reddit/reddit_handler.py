@@ -17,8 +17,8 @@ import pandas as pd
 from praw import Reddit
 from prawcore import ResponseException
 
-from .table_column_info import SUBMISSION_COLUMNS
 from ..types import DBHandler, DBHandlerResponse, DBHandlerStatus
+from .table_column_info import SUBMISSION_COLUMNS
 
 
 class RedditHandler(DBHandler):
@@ -34,7 +34,7 @@ class RedditHandler(DBHandler):
             self.client = Reddit(
                 client_id=self.clientId,
                 client_secret=self.clientSecret,
-                user_agent=self.userAgent
+                user_agent=self.userAgent,
             )
             return DBHandlerStatus(status=True)
         except Exception as e:
@@ -43,7 +43,7 @@ class RedditHandler(DBHandler):
     @property
     def supported_table(self):
         def _submission_generator():
-            for submission in self.client.subreddit(self.subreddit).hot(): #TODO: REMOVE LIMIT
+            for submission in self.client.subreddit(self.subreddit).hot():
                 yield {
                     property_name: getattr(submission, property_name)
                     for property_name, _ in SUBMISSION_COLUMNS
@@ -63,13 +63,15 @@ class RedditHandler(DBHandler):
         TODO: Add support for destroying session token if used in other flows
         """
         return
-        #raise NotImplementedError()
+        # raise NotImplementedError()
 
     def check_connection(self) -> DBHandlerStatus:
         try:
             self.client.user.me()
         except ResponseException as e:
-            return DBHandlerStatus(status=False, error=f"Received ResponseException: {e.response}")
+            return DBHandlerStatus(
+                status=False, error=f"Received ResponseException: {e.response}"
+            )
         return DBHandlerStatus(status=True)
 
     def get_tables(self) -> DBHandlerResponse:

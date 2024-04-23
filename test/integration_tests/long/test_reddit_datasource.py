@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import unittest
-
 from test.markers import reddit_skip_marker
 from test.util import get_evadb_for_testing
 
@@ -38,9 +37,9 @@ class RedditDataSourceTest(unittest.TestCase):
         # Create database.
         params = {
             "subreddit": "cricket",
-            "client_id": 'clientid..',
-            "client_secret": 'clientsecret..',
-            "user_agent": 'test script for dev eva'
+            "client_id": "clientid..",
+            "client_secret": "clientsecret..",
+            "user_agent": "test script for dev eva",
         }
         query = f"""CREATE DATABASE reddit_data
                     WITH ENGINE = "reddit",
