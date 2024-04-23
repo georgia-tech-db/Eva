@@ -117,3 +117,5 @@ forecast_skip_marker = pytest.mark.skipif(
 stable_diffusion_skip_marker = pytest.mark.skipif(
     is_replicate_available() is False, reason="requires replicate"
 )
+
+reddit_skip_marker = pytest.mark.skip(reason="requires Reddit secret key")

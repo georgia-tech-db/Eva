@@ -695,6 +695,7 @@ PlanOprType
 Popen
 PostgresHandler
 PostgresNativeStorageEngineTest
+praw
 PredicateExecutor
 PredicatePlan
 PredictEmployee
