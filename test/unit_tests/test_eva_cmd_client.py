@@ -23,7 +23,7 @@ from evadb.evadb_config import BASE_EVADB_CONFIG
 
 
 # @pytest.mark.skip
-class CMDClientTest(unittest.TestCase):
+class CMDClientTest(unittest.IsolatedAsyncioTestCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
