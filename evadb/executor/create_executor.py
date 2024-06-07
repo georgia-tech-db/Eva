@@ -17,6 +17,7 @@ import contextlib
 import pandas as pd
 
 from evadb.database import EvaDBDatabase
+from evadb.error_manager import ErrorManager
 from evadb.executor.abstract_executor import AbstractExecutor
 from evadb.executor.executor_utils import (
     create_table_catalog_entry_for_native_table,
@@ -64,10 +65,11 @@ class CreateExecutor(AbstractExecutor):
 
             msg = f"The table {name} has been successfully created"
             if self.children != []:
-                assert (
-                    len(self.children) == 1
-                ), "Create table from query expects 1 child, finds {}".format(
-                    len(self.children)
+                assert len(self.children) == 1, ErrorManager.get_error_message(
+                    ErrorManager.QUERY_EXPECTS_ONE_CHILD,
+                    "Create table from query expects 1 child, finds {}".format(
+                        len(self.children)
+                    ),
                 )
                 child = self.children[0]
 

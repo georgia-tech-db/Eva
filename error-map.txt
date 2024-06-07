@@ -1,0 +1,176 @@
+0000 - ERROR_GENERIC
+
+=======================Expected-Type Errors=======================
+
+0100 - EXPECTED_SELECTION_STATEMENT
+        - evadb/parser/utils.py
+            - 41
+            - 48
+            - 61
+            - 170
+            - 184
+        - evadb/interfaces/relational/utils.py
+            - 88
+        - evadb/parser/table_ref.py
+            - 253
+0101 - EXPECTED_CREATE_TABLE_STATEMENT
+        - evadb/parser/utils.py
+            - 101
+0102 - EXPECTED_SHOW_STATEMENT
+        - evadb/parser/utils.py
+            - 108
+0103 - EXPECTED_INSERT_STATEMENT
+        - evadb/parser/utils.py
+            - 122
+0104 - EXPECTED_EXPLAIN_STATEMENT
+        - evadb/parser/utils.py
+            - 115
+0105 - EXPECTED_LOAD_STATEMENT
+        - evadb/parser/utils.py
+            - 129
+0106 - EXPECTED_DROP_OBJECT_STATEMENT
+        - evadb/parser/utils.py
+            - 141
+0107 - EXPECTED_RENAME_STATEMENT
+        - evadb/parser/utils.py
+            - 191
+0108 - EXPECTED_CREATE_FUNCTION_STATEMENT
+        - evadb/parser/utils.py
+            - 88
+0109_EXPECTED_COLUMNS_NUMBER_MISMATCH
+        - evadb/binder/binder_utils.py
+            - 246
+
+0110 - QUERY_EXPECTS_ONE_CHILD
+        - evadb/executor/create_executor.py
+            - 67
+        - evadb/executor/create_function_executor.py
+            - 114
+            - 164
+            - 221
+0111 - EXPECTED_API_TOKEN_SET
+        - evadb/functions/chatgpt.py
+            - 127
+        - evadb/functions/dalle.py
+            - 65
+        - evadb/functions/stable_diffusion.py
+            - 68
+        - evadb/third_party/vector_stores/pinecone.py
+            - 44
+            - 53
+0112 - EXPECTED_PD_DF
+        - evadb/functions/abstract/tracker_abstract_function.py
+            - 90
+
+
+=======================Index Errors=======================
+
+1100 - CANNOT_CREATE_INDEX_ON_MULIPLE_COLUMN
+        - evadb/binder/create_index_statement_binder.py
+            - 37
+            - 67
+1101 - CREATE_INDEX_ONLY_ON_EXISTING_TABLE
+        - - evadb/binder/create_index_statement_binder.py
+            - 40
+1102 - CANNOT_CREATE_INDEX_ON_NONEXISTANT_COLUMN
+        - evadb/binder/create_index_statement_binder.py
+            - 76
+1103 - INDEX_INPUT_TYPE_MISMATCH
+        - evadb/binder/create_index_statement_binder.py
+            - 85
+            - 100
+1104 - INDEX_INPUT_DIM_MISMATCH
+        - evadb/binder/create_index_statement_binder.py
+            - 94
+1105 - CREATE_INDEX_FIRST
+        - evadb/third_party/vector_stores/faiss.py
+            - 58
+            - 67
+            - 73
+
+=======================Type Errors=======================
+
+2100 - UNSUPPORTED_TYPE
+        - evadb/catalog/catalog_manager.py
+            - 551
+        - evadb/executor/delete_executor.py
+            - 73
+        - evadb/executor/show_info_executor.py
+            - 32
+        - evadb/expression/comparison_expression.py
+            - 49
+        - evadb/expression/tuple_value_expression.py
+            - 83
+2101 - UNSUPPORTED_OPERATION
+        - evadb/executor/union_executor.py
+            - 35
+        - evadb/models/storage/batch.py
+            - 204
+            - 268
+        - evadb/optimizer/binder.py
+            - 61
+        - evadb/optimizer/group_expression.py
+            - 31
+        - evadb/executor/exchange_executor.py
+            - 74
+2102 - UNSUPPORTED_CLAUSE
+        - evadb/interfaces/relational/utils.py
+            - 100
+2103 - UNSUPPORTED_LIBRARY
+        - evadb/executor/create_function_executor.py
+            - 319
+2104 - CONCURRENT_CALLS_NOT_SUPPORTED
+        - evadb/utils/stats.py
+            - 32
+
+        
+        
+
+=======================Not Found/ Already Exists Errors=========================
+
+3100 - TABLE_NOT_FOUND
+        - evadb/catalog/catalog_manager.py
+            - 589
+
+3101 - TABLE_ALREADY_EXISTS
+        - evadb/catalog/catalog_manager.py
+            - 613
+
+3102 - DIRECTORY_NOT_FOUND
+        - evadb/configuration/bootstrap_environment.py
+            - 60
+            - 61
+
+3103 - DIRECTORY_ALREADY_EXISTS
+
+3104 - FILE_NOT_FOUND
+        - evadb/functions/ndarray/open.py
+            - 48
+
+3105 - FILE_ALREADY_EXISTS
+
+3106 - KEY_NOT_FOUND
+        - evadb/executor/exchange_executor.py
+            - 35
+            - 38
+
+
+=======================Failed-to Errors=======================
+4100 - DROP_TABLE_FAILED
+        - evadb/executor/drop_object_executor.py
+            - 68
+4101 - VECTOR_STORE_HANDLER_INITALIZATION_FAILED
+        - evadb/executor/drop_object_executor.py
+            - 125
+
+4102 - RELATION_EXECUTE_FAILED
+        - evadb/interfaces/relational/relation.py
+            - 124
+            - 264
+
+=======================Not implemented=======================
+9999 - NOT_IMPLEMENTED
+        - evadb/executor/delete_executor.py
+            - 97
+        - evadb/executor/insert_executor.py
+            - 41
