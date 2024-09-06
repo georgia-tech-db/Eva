@@ -484,3 +484,18 @@ class SelectExecutorTest(unittest.TestCase):
             pd.DataFrame([{"dummynoinputfunction.label": "DummyNoInputFunction"}])
         )
         self.assertEqual(actual_batch, expected)
+
+    def test_nested_function_calls(self):
+        select_query = "SELECT DummyAccessColumnByName(DummyAccessColumnByName(id, data)) from MyVideo;"
+        actual_batch = execute_query_fetch_all(self.evadb, select_query)
+        expected = Batch(
+            pd.DataFrame(
+                [
+                    {
+                        "dummyaccesscolumnbyname.output1": True,
+                        "dummyaccesscolumnbyname.output2": True,
+                    }
+                ]
+            )
+        )
+        self.assertEqual(actual_batch, expected)

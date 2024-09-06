@@ -184,6 +184,14 @@ class FunctionExpression(AbstractExpression):
             [child.evaluate(batch, **kwargs) for child in self.children]
         )
 
+        # Rename the columns according to args from input signatures
+        if self.function_obj is not None:
+            col_renaming = {
+                original_col: arg.name
+                for original_col, arg in zip(func_args.columns, self.function_obj.args)
+            }
+            func_args.rename(col_renaming)
+
         if not self._cache:
             return func_args.apply_function_expression(func)
 

@@ -63,6 +63,13 @@ DummyLLM_function_query = """CREATE FUNCTION
     EvaDB_INSTALLATION_DIR
 )
 
+DummyAccessColumnByName_function_query = """CREATE FUNCTION
+                  IF NOT EXISTS DummyAccessColumnByName
+                  IMPL '{}/../test/util.py';
+        """.format(
+    EvaDB_INSTALLATION_DIR
+)
+
 fuzzy_function_query = """CREATE FUNCTION IF NOT EXISTS FuzzDistance
                     INPUT (Input_Array1 NDARRAY ANYTYPE, Input_Array2 NDARRAY ANYTYPE)
                     OUTPUT (distance FLOAT(32, 7))
@@ -302,6 +309,7 @@ def init_builtin_functions(db: EvaDBDatabase, mode: str = "debug") -> None:
                 DummyFeatureExtractor_function_query,
                 DummyNoInputFunction_function_query,
                 DummyLLM_function_query,
+                DummyAccessColumnByName_function_query,
             ]
         )
 

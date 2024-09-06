@@ -750,3 +750,35 @@ class DummyLLM(AbstractFunction):
         # Make it slower
         time.sleep(1)
         return df
+
+
+class DummyAccessColumnByName(AbstractFunction):
+    @decorators.setup(cacheable=False, function_type="test", batchable=False)
+    def setup(self, *args, **kwargs):
+        pass
+
+    @property
+    def name(self) -> str:
+        return "DummyAccessColumnByName"
+
+    @decorators.forward(
+        input_signatures=[
+            PandasDataframe(
+                columns=["input1", "input2"],
+                column_types=[NdArrayType.ANYTYPE, NdArrayType.ANYTYPE],
+                column_shapes=[(None,), (None,)],
+            )
+        ],
+        output_signatures=[
+            PandasDataframe(
+                columns=["output1", "output2"],
+                column_types=[NdArrayType.ANYTYPE, NdArrayType.ANYTYPE],
+                column_shapes=[(None,), (None,)],
+            )
+        ],
+    )
+    def forward(self, df: pd.DataFrame) -> pd.DataFrame:
+        ret = pd.DataFrame(
+            [{"output1": df["input1"] is not None, "output2": df["input2"] is not None}]
+        )
+        return ret
