@@ -44,6 +44,8 @@ from evadb.executor.sample_executor import SampleExecutor
 from evadb.executor.seq_scan_executor import SequentialScanExecutor
 from evadb.executor.set_executor import SetExecutor
 from evadb.executor.show_info_executor import ShowInfoExecutor
+from evadb.executor.start_scheduler_executor import StartSchedulerExecutor
+from evadb.executor.stop_scheduler_executor import StopSchedulerExecutor
 from evadb.executor.storage_executor import StorageExecutor
 from evadb.executor.union_executor import UnionExecutor
 from evadb.executor.use_executor import UseExecutor
@@ -51,6 +53,8 @@ from evadb.executor.vector_index_scan_executor import VectorIndexScanExecutor
 from evadb.models.storage.batch import Batch
 from evadb.parser.create_statement import CreateDatabaseStatement, CreateJobStatement
 from evadb.parser.set_statement import SetStatement
+from evadb.parser.start_scheduler_statement import StartSchedulerStatement
+from evadb.parser.stop_scheduler_statement import StopSchedulerStatement
 from evadb.parser.statement import AbstractStatement
 from evadb.parser.use_statement import UseStatement
 from evadb.plan_nodes.abstract_plan import AbstractPlan
@@ -96,6 +100,10 @@ class PlanExecutor:
             return SetExecutor(db=self._db, node=plan)
         elif isinstance(plan, CreateJobStatement):
             return CreateJobExecutor(db=self._db, node=plan)
+        elif isinstance(plan, StartSchedulerStatement):
+            return StartSchedulerExecutor(db=self._db, node=plan)
+        elif isinstance(plan, StopSchedulerStatement):
+            return StopSchedulerExecutor(db=self._db, node=plan)
 
         # Get plan node type
         plan_opr_type = plan.opr_type

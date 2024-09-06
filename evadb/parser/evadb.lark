@@ -14,7 +14,7 @@ ddl_statement: create_database | create_table | create_index | create_function |
 dml_statement: select_statement | insert_statement | update_statement
     | delete_statement | load_statement | set_statement
     
-utility_statement: describe_statement | show_statement | help_statement | explain_statement
+utility_statement: describe_statement | show_statement | help_statement | explain_statement | start_scheduler_statement | stop_scheduler_statement
 
 context_statement: use_statement
 
@@ -203,6 +203,10 @@ explain_statement: EXPLAIN explainable_statement
 
 explainable_statement : select_statement | insert_statement | update_statement | delete_statement | create_table
 
+start_scheduler_statement : START JOB_SCHEDULER
+
+stop_scheduler_statement : STOP JOB_SCHEDULER
+
 // Context Statements
 
 use_statement: USE database_name "{" query_string "}" // One shortcoming that query string cannot have parenthesis
@@ -387,6 +391,7 @@ INDEX:                               "INDEX"i
 INSERT:                              "INSERT"i
 IS:                                  "IS"i
 JOB:                                 "JOB"i
+JOB_SCHEDULER:                       "JOB_SCHEDULER"i
 JOIN:                                "JOIN"i
 KEY:                                 "KEY"i
 LATERAL:                             "LATERAL"i
@@ -416,6 +421,7 @@ SHUTDOWN:                            "SHUTDOWN"i
 SHOW:                                "SHOW"i
 SOME:                                "SOME"i
 START:                               "START"i
+STOP:                                "STOP"i
 TABLE:                               "TABLE"i
 TABLES:                              "TABLES"i
 TO:                                  "TO"i
